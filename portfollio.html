@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mon Portfolio - Développeur Full Stack</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <style>
+        /* ===== RESET & BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f8fafc;
+            color: #0f172a;
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ===== COULEURS ===== */
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --primary-light: #dbeafe;
+            --secondary: #0f172a;
+            --gray: #64748b;
+            --gray-light: #e2e8f0;
+            --white: #ffffff;
+            --shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+            --shadow-hover: 0 12px 48px rgba(0, 0, 0, 0.10);
+            --radius: 16px;
+            --green: #10b981;
+            --orange: #f59e0b;
+            --red: #ef4444;
+        }
+
+        /* ===== HEADER ===== */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--gray-light);
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .logo {
+            font-weight: 900;
+            font-size: 1.6rem;
+            letter-spacing: -0.5px;
+        }
+        .logo span {
+            color: var(--primary);
+        }
+        .logo small {
+            font-weight: 400;
+            font-size: 0.75rem;
+            color: var(--gray);
+            display: block;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--secondary);
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        .nav-links .btn-cta {
+            background: var(--primary);
+            color: #fff;
+            padding: 10px 28px;
+            border-radius: 40px;
+            font-weight: 600;
+            transition: background 0.2s, transform 0.15s;
+        }
+        .nav-links .btn-cta:hover {
+            background: var(--primary-dark);
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            padding: 50px 0 30px;
+            flex-wrap: wrap;
+        }
+        .hero-text {
+            flex: 1.2;
+            min-width: 280px;
+        }
+        .hero-text .badge {
+            display: inline-block;
+            background: var(--primary-light);
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 0.75rem;
+            padding: 6px 18px;
+            border-radius: 40px;
+            letter-spacing: 0.3px;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+        }
+        .hero-text h1 {
+            font-size: 2.8rem;
+            font-weight: 900;
+            line-height: 1.15;
+            margin-bottom: 12px;
+            letter-spacing: -1px;
+        }
+        .hero-text h1 .highlight {
+            color: var(--primary);
+            border-bottom: 4px solid var(--primary);
+        }
+        .hero-text .subtitle {
+            font-size: 1.2rem;
+            color: var(--gray);
+            max-width: 520px;
+            margin-bottom: 8px;
+        }
+        .hero-text .subtitle strong {
+            color: var(--secondary);
+        }
+        .hero-stats {
+            display: flex;
+            gap: 40px;
+            margin: 24px 0 32px;
+            flex-wrap: wrap;
+        }
+        .hero-stats .stat {
+            text-align: left;
+        }
+        .hero-stats .number {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--secondary);
+        }
+        .hero-stats .label {
+            font-size: 0.8rem;
+            color: var(--gray);
+            font-weight: 500;
+            display: block;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            background: var(--secondary);
+            color: #fff;
+            padding: 14px 44px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.2s, transform 0.15s;
+        }
+        .btn-primary:hover {
+            background: var(--primary);
+            transform: translateY(-2px);
+        }
+        .btn-outline {
+            display: inline-block;
+            border: 2px solid var(--secondary);
+            color: var(--secondary);
+            padding: 12px 36px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-left: 12px;
+            transition: all 0.2s;
+        }
+        .btn-outline:hover {
+            background: var(--secondary);
+            color: #fff;
+        }
+
+        .hero-visual {
+            flex: 0.8;
+            min-width: 200px;
+            text-align: center;
+        }
+        .avatar-placeholder {
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-light), #93c5fd);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin: 0 auto;
+            box-shadow: var(--shadow-hover);
+            border: 4px solid #fff;
+        }
+        .avatar-image {
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            display: block;
+            margin: 0 auto;
+            box-shadow: var(--shadow-hover);
+            border: 4px solid #fff;
+            background: linear-gradient(135deg, var(--primary-light), #93c5fd);
+            object-fit: cover;
+        }
+
+        .tech-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .tech-pills span {
+            background: var(--white);
+            padding: 6px 16px;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--secondary);
+            border: 1px solid var(--gray-light);
+            box-shadow: var(--shadow);
+        }
+
+        /* ===== SECTIONS ===== */
+        .section-title {
+            font-size: 2rem;
+            font-weight: 800;
+            margin: 56px 0 8px;
+            letter-spacing: -0.5px;
+        }
+        .section-sub {
+            color: var(--gray);
+            margin-bottom: 32px;
+            font-size: 1.05rem;
+        }
+
+        /* ===== PROJETS ===== */
+        .projets-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 32px;
+        }
+
+        .projet-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 28px 24px 24px;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(0,0,0,0.03);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .projet-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .projet-card .stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 12px;
+        }
+        .projet-card .stack span {
+            background: var(--primary-light);
+            color: var(--primary);
+            font-size: 0.65rem;
+            font-weight: 700;
+            padding: 3px 12px;
+            border-radius: 40px;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+        .projet-card .stack span.sec {
+            background: #f1f5f9;
+            color: var(--gray);
+        }
+
+        .projet-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 4px;
+        }
+        .projet-card .meta {
+            color: var(--gray);
+            font-size: 0.85rem;
+            margin-bottom: 12px;
+        }
+        .projet-card p {
+            color: #334155;
+            font-size: 0.92rem;
+            margin-bottom: 14px;
+        }
+        .projet-card .resultat {
+            background: #ecfdf5;
+            border-left: 4px solid var(--green);
+            padding: 10px 16px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: #065f46;
+        }
+        .projet-card .resultat.blue {
+            background: var(--primary-light);
+            border-left-color: var(--primary);
+            color: #1e40af;
+        }
+        .projet-card .resultat.orange {
+            background: #fffbeb;
+            border-left-color: var(--orange);
+            color: #92400e;
+        }
+        .projet-card .resultat.red {
+            background: #fef2f2;
+            border-left-color: var(--red);
+            color: #991b1b;
+        }
+
+        .projet-card .lien {
+            display: inline-block;
+            margin-top: 14px;
+            color: var(--primary);
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        .projet-card .lien:hover {
+            text-decoration: underline;
+        }
+
+        /* ===== COMPÉTENCES ===== */
+        .competences-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 32px 0 16px;
+        }
+        .competence-item {
+            background: var(--white);
+            padding: 20px 22px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(0,0,0,0.02);
+            text-align: center;
+        }
+        .competence-item .icon {
+            font-size: 2rem;
+            display: block;
+            margin-bottom: 6px;
+        }
+        /* SVG icon styling */
+        .icon {
+            width: 1.6rem;
+            height: 1.6rem;
+            display: inline-block;
+            vertical-align: middle;
+            fill: currentColor;
+        }
+        .icon-lg { width: 3rem; height: 3rem; }
+        .competence-item .icon svg.icon { display: block; margin: 0 auto; }
+        .competence-item h4 {
+            font-size: 1rem;
+            font-weight: 700;
+        }
+        .competence-item p {
+            color: var(--gray);
+            font-size: 0.82rem;
+            margin-top: 4px;
+        }
+        .competence-item .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+            justify-content: center;
+            margin-top: 8px;
+        }
+        .competence-item .tags span {
+            background: var(--gray-light);
+            font-size: 0.65rem;
+            padding: 2px 10px;
+            border-radius: 40px;
+            color: var(--secondary);
+            font-weight: 500;
+        }
+
+        /* ===== PARCOURS ===== */
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin: 20px 0 10px;
+        }
+        .timeline-item {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+            background: var(--white);
+            padding: 18px 24px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border-left: 4px solid var(--primary);
+        }
+        .timeline-item .year {
+            font-weight: 800;
+            color: var(--primary);
+            min-width: 80px;
+            font-size: 1rem;
+        }
+        .timeline-item .content h4 {
+            font-size: 1rem;
+            font-weight: 700;
+        }
+        .timeline-item .content p {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* ===== CTA ===== */
+        .cta-banner {
+            background: var(--secondary);
+            color: #fff;
+            border-radius: var(--radius);
+            padding: 48px 40px;
+            margin: 56px 0 40px;
+            text-align: center;
+        }
+        .cta-banner h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 6px;
+        }
+        .cta-banner p {
+            color: #94a3b8;
+            margin-bottom: 24px;
+            font-size: 1.05rem;
+        }
+        .cta-banner .btn-white {
+            background: #fff;
+            color: var(--secondary);
+            padding: 14px 48px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 700;
+            display: inline-block;
+            transition: background 0.2s, transform 0.15s;
+        }
+        .cta-banner .btn-white:hover {
+            background: var(--primary-light);
+            transform: translateY(-2px);
+        }
+        .cta-banner .contact-direct {
+            margin-top: 16px;
+            font-size: 0.9rem;
+            color: #94a3b8;
+        }
+        .cta-banner .contact-direct a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .cta-banner .contact-direct a:hover {
+            color: var(--primary-light);
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            text-align: center;
+            padding: 28px 0 20px;
+            color: var(--gray);
+            font-size: 0.8rem;
+            border-top: 1px solid var(--gray-light);
+        }
+        footer .socials {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 10px;
+        }
+        footer .socials a {
+            color: var(--gray);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.85rem;
+            transition: color 0.2s;
+        }
+        footer .socials a:hover {
+            color: var(--primary);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 700px) {
+            .hero {
+                flex-direction: column-reverse;
+                text-align: center;
+            }
+            .hero-text p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .hero-stats {
+                justify-content: center;
+            }
+            header {
+                flex-direction: column;
+                gap: 12px;
+            }
+            .nav-links {
+                justify-content: center;
+                gap: 16px;
+            }
+            .section-title {
+                font-size: 1.6rem;
+            }
+            .cta-banner {
+                padding: 28px 16px;
+            }
+            .cta-banner h2 {
+                font-size: 1.5rem;
+            }
+            .avatar-placeholder {
+                width: 160px;
+                height: 160px;
+                font-size: 3rem;
+            }
+            .hero-text h1 {
+                font-size: 2rem;
+            }
+            .btn-outline {
+                margin-left: 0;
+                margin-top: 10px;
+                display: inline-block;
+            }
+            .timeline-item {
+                flex-direction: column;
+                gap: 4px;
+            }
+            .timeline-item .year {
+                min-width: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- SVG sprite: réutilisable pour icônes inline -->
+    <svg aria-hidden="true" style="display:none;">
+        <symbol id="icon-lock" viewBox="0 0 24 24">
+            <rect x="3" y="11" width="18" height="10" rx="2" />
+            <path d="M7 11V8a5 5 0 0 1 10 0v3" fill="none" stroke-width="0" />
+        </symbol>
+        <symbol id="icon-cart" viewBox="0 0 24 24">
+            <path d="M3 3h2l1 7h13l1-4H8" stroke-width="0" />
+            <circle cx="10" cy="19" r="1.5" />
+            <circle cx="18" cy="19" r="1.5" />
+        </symbol>
+        <symbol id="icon-chart" viewBox="0 0 24 24">
+            <rect x="4" y="10" width="3" height="8" />
+            <rect x="9" y="6" width="3" height="12" />
+            <rect x="14" y="3" width="3" height="15" />
+        </symbol>
+        <symbol id="icon-mobile" viewBox="0 0 24 24">
+            <rect x="6" y="2" width="12" height="20" rx="2" />
+            <circle cx="12" cy="18" r="1" />
+        </symbol>
+        <symbol id="icon-shield" viewBox="0 0 24 24">
+            <path d="M12 2l7 4v6c0 5-3.5 9-7 10-3.5-1-7-5-7-10V6l7-4z" />
+        </symbol>
+        <symbol id="icon-globe" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="9" />
+            <path d="M2 12h20" />
+            <path d="M12 2c3 3 3 17 0 20" />
+        </symbol>
+        <symbol id="icon-mail" viewBox="0 0 24 24">
+            <rect x="3" y="5" width="18" height="14" rx="2" />
+            <path d="M3 7l9 6 9-6" />
+        </symbol>
+        <symbol id="icon-phone" viewBox="0 0 24 24">
+            <path d="M6.6 10.8a15.05 15.05 0 0 0 6.6 6.6l2-2a1 1 0 0 1 1-.2c1.1.4 2.3.6 3.6.6a1 1 0 0 1 1 1V21a1 1 0 0 1-1 1A19 19 0 0 1 3 3a1 1 0 0 1 1-1h2.2a1 1 0 0 1 1 1c0 1.3.2 2.5.6 3.6a1 1 0 0 1-.2 1l-2 2z" />
+        </symbol>
+        <symbol id="icon-server" viewBox="0 0 24 24">
+            <rect x="3" y="3" width="18" height="6" rx="1" />
+            <rect x="3" y="10" width="18" height="6" rx="1" />
+            <rect x="3" y="17" width="10" height="4" rx="1" />
+            <circle cx="18" cy="19" r="1" />
+        </symbol>
+        <symbol id="icon-link" viewBox="0 0 24 24">
+            <path d="M10.59 13.41a5 5 0 0 0 7.07 0l2.83-2.83a5 5 0 0 0-7.07-7.07l-1.41 1.41" />
+            <path d="M13.41 10.59a5 5 0 0 0-7.07 0L3.51 13.42a5 5 0 0 0 7.07 7.07l1.41-1.41" />
+        </symbol>
+    </svg>
+
+    <div class="container">
+
+        <!-- ===== HEADER ===== -->
+        <header>
+            <div class="logo">
+                MASSA A FOFIE SITCHEU TRESOR<span>.</span>
+                <small>Étudiant L3 Informatique · Full Stack Dev</small>
+            </div>
+            <div class="nav-links">
+                <a href="#projets">Projets</a>
+                <a href="#competences">Compétences</a>
+                <a href="#parcours">Parcours</a>
+                <a href="#contact" class="btn-cta">Me contacter</a>
+            </div>
+        </header>
+
+        <!-- ===== HERO ===== -->
+        <section class="hero">
+            <div class="hero-text">
+                <div class="badge">🎓 Étudiant en L3 Informatique · Université de Dschang</div>
+                <h1>
+                    Je construis des applications <br />
+                    <span class="highlight">Full Stack</span> et je vise la <span class="highlight">cybersécurité</span>
+                </h1>
+                <p class="subtitle">
+                    <strong>Développeur React · Spring Boot · Laravel</strong> — 
+                    Je transforme des idées en applications robustes, avec un œil sur la sécurité.
+                </p>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <div class="number">6+</div>
+                        <span class="label">projets livrés</span>
+                    </div>
+                    <div class="stat">
+                        <div class="number">4</div>
+                        <span class="label">technologies maîtrisées</span>
+                    </div>
+                    <div class="stat">
+                        <div class="number"><svg class="icon icon-lg" aria-hidden="true"><use href="#icon-lock"></use></svg></div>
+                        <span class="label">Objectif : Cybersécurité</span>
+                    </div>
+                </div>
+                <div>
+                    <a href="#projets" class="btn-primary">Voir mes projets ↓</a>
+                    <a href="#contact" class="btn-outline">Me contacter</a>
+                </div>
+                <div class="tech-pills">
+                    <span>React</span>
+                    <span>Spring Boot</span>
+                    <span>Laravel</span>
+                    <span>PostgreSQL</span>
+                    <span>Docker</span>
+                    <span>Java</span>
+                    <span>Python</span>
+                    <span>Linux</span>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <!-- Avatar inline SVG (remplace image en dur) -->
+                <svg class="avatar-image" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                    <defs>
+                        <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
+                            <stop offset="0%" stop-color="#DBEAFE" />
+                            <stop offset="100%" stop-color="#93C5FD" />
+                        </linearGradient>
+                    </defs>
+                    <rect width="512" height="512" rx="256" fill="url(#g1)" />
+                    <circle cx="256" cy="186" r="92" fill="#FFFFFF" />
+                    <path d="M156 390C166 314 206 282 256 282C306 282 346 314 356 390V420H156V390Z" fill="#2563EB" opacity="0.95" />
+                    <circle cx="236" cy="176" r="8" fill="#0F172A" />
+                    <circle cx="276" cy="176" r="8" fill="#0F172A" />
+                    <path d="M238 204C247 212 265 212 274 204" stroke="#0F172A" stroke-width="8" stroke-linecap="round" fill="none" />
+                </svg>
+            </div>
+        </section>
+
+        <!-- ===== PROJETS ===== -->
+        <h2 class="section-title" id="projets">Mes projets phares</h2>
+        <p class="section-sub">Des applications complètes, du frontend au backend, avec une attention à la sécurité.</p>
+
+        <div class="projets-grid">
+
+            <!-- PROJET 1 : Plateforme de services -->
+            <div class="projet-card">
+                <div class="stack">
+                    <span>React</span>
+                    <span>Spring Boot</span>
+                    <span>PostgreSQL</span>
+                    <span>Docker</span>
+                </div>
+                <h3>Plateforme de gestion de prestataires</h3>
+                <div class="meta">Projet principal · L3 Informatique</div>
+                <p>
+                    <strong>Objectif :</strong> Mettre en relation des clients et des prestataires de services.
+                    Architecture microservices avec Eureka et RabbitMQ.
+                </p>
+                <p>
+                    <strong>Mon rôle :</strong> Conception de l'architecture, développement du frontend React,
+                    mise en place du système d'authentification (JWT, OTP, récupération de mot de passe).
+                </p>
+                <div class="resultat blue">
+                    <svg class="icon" aria-hidden="true"><use href="#icon-lock"></use></svg> Authentification sécurisée · JWT · OTP · Gestion des rôles
+                </div>
+                <a href="https://github.com/Baros16/front-end-services-clients-prestataires.git" class="lien" target="_blank" rel="noopener noreferrer" aria-label="Voir le dépôt du projet (ouvre dans un nouvel onglet)">Voir le projet →</a>
+            </div>
+
+            <!-- PROJET 2 : E-commerce Laravel -->
+            <div class="projet-card">
+                <div class="stack">
+                    <span>Laravel</span>
+                    <span>PHP</span>
+                    <span>MySQL</span>
+                    <span>JavaScript</span>
+                </div>
+                <h3>E-commerce multi-catégories</h3>
+                <div class="meta">Projet universitaire · 2025</div>
+                <p>
+                    <strong>Objectif :</strong> Créer une boutique en ligne avec 3 catégories 
+                    (Accessoires, Agriculture, Phyto) et un panier persistant.
+                </p>
+                <p>
+                    <strong>Ce que j'ai fait :</strong> Backend Laravel, gestion des utilisateurs,
+                    panier avec localStorage, interface responsive, paiement simulé.
+                </p>
+                <div class="resultat orange">
+                    <svg class="icon" aria-hidden="true"><use href="#icon-cart"></use></svg> Panier localStorage · Gestion de stock · Dashboard admin
+                </div>
+                <a href="https://github.com/treso11/E-commerce.git" class="lien">Voir le projet →</a>
+            </div>
+
+            <!-- PROJET 3 : JavaFX Gestion de stock -->
+            <div class="projet-card">
+                <div class="stack">
+                    <span>JavaFX</span>
+                    <span>SQLite</span>
+                    <span>iText</span>
+                </div>
+                <h3>Application de gestion de stock</h3>
+                <div class="meta">Projet Desktop · 2025</div>
+                <p>
+                    <strong>Objectif :</strong> Gérer les stocks d'une petite entreprise,
+                    avec génération de reçus et tableau de bord administrateur.
+                </p>
+                <p>
+                    <strong>Ce que j'ai fait :</strong> Interface JavaFX, base de données SQLite
+                    (remplacement de XAMPP/MySQL pour plus d'autonomie), génération de PDF avec iText.
+                </p>
+                <div class="resultat">
+                    <svg class="icon" aria-hidden="true"><use href="#icon-chart"></use></svg> Dashboard · Impression de reçus · Stock critique
+                </div>
+                <a href="#" class="lien">Voir le projet →</a>
+            </div>
+
+            <!-- PROJET 4 : Android - Collection d'animés -->
+            <div class="projet-card">
+                <div class="stack">
+                    <span>Android</span>
+                    <span>Java</span>
+                    <span>SQLite</span>
+                </div>
+                <h3>Collection d'animés (Android)</h3>
+                <div class="meta">Projet Mobile · 2025</div>
+                <p>
+                    <strong>Objectif :</strong> Application mobile pour gérer une collection
+                    personnelle d'animés (ajout, suppression, favoris).
+                </p>
+                <p>
+                    <strong>Ce que j'ai fait :</strong> Conception de l'interface Android,
+                    persistance des données avec SQLite, gestion des listes et recherche.
+                </p>
+                <div class="resultat orange">
+                    <svg class="icon" aria-hidden="true"><use href="#icon-mobile"></use></svg> Interface Android · Base de données locale · Recherche
+                </div>
+                <a href="https://github.com/treso11/AnimeTrack.git" class="lien" target="_blank" rel="noopener noreferrer" aria-label="Voir le dépôt du projet (ouvre dans un nouvel onglet)">Voir le projet →</a>
+            </div>
+
+            <!-- PROJET 5 : Réseaux / Cybersécurité -->
+            <div class="projet-card">
+                <div class="stack">
+                    <span>Linux</span>
+                    <span>Wireshark</span>
+                    <span>Nmap</span>
+                    <span>Docker</span>
+                    <span class="sec">En cours</span>
+                </div>
+                <h3>Laboratoire réseau & cybersécurité</h3>
+                <div class="meta">Projet personnel · En cours</div>
+                <p>
+                    <strong>Objectif :</strong> Comprendre les mécanismes réseau et les failles de sécurité
+                    à travers des expérimentations pratiques.
+                </p>
+                <p>
+                    <strong>Ce que j'ai fait :</strong> Mise en place de serveurs DNS/DHCP/HTTP,
+                    analyse de trafic avec Wireshark, reconnaissance réseau avec Nmap,
+                    configuration de pare-feu, containerisation avec Docker.
+                </p>
+                <div class="resultat red">
+                    <svg class="icon" aria-hidden="true"><use href="#icon-shield"></use></svg> Analyse réseau · Sécurisation · Audits
+                </div>
+                <a href="#" class="lien"> Voir le projet →</a>
+            </div>
+        </div>
+
+        <!-- ===== COMPÉTENCES ===== -->
+        <h2 class="section-title" id="competences">Compétences techniques</h2>
+        <p class="section-sub">Un socle Full Stack, avec un intérêt croissant pour la sécurité.</p>
+
+        <div class="competences-grid">
+            <div class="competence-item">
+                <span class="icon"><svg class="icon" aria-hidden="true"><use href="#icon-globe"></use></svg></span>
+                <h4>Frontend</h4>
+                <p>React, JavaScript, Tailwind, HTML/CSS</p>
+                <div class="tags"><span>React</span><span>Vite</span><span>Tailwind</span></div>
+            </div>
+            <div class="competence-item">
+                <span class="icon"><svg class="icon" aria-hidden="true"><use href="#icon-phone"></use></svg></span>
+                <h4>Backend</h4>
+                <p>Spring Boot, Laravel, Java, PHP</p>
+                <div class="tags"><span>Spring Boot</span><span>Laravel</span><span>API REST</span></div>
+            </div>
+            <div class="competence-item">
+                <span class="icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.0" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5.5" rx="8" ry="3"></ellipse><path d="M4 5.5V18.5C4 20.16 7.58 21.5 12 21.5C16.42 21.5 20 20.16 20 18.5V5.5"></path><path d="M4 12C4 13.66 7.58 15 12 15C16.42 15 20 13.66 20 12"></path></svg></span>
+                <h4>Bases de données</h4>
+                <p>PostgreSQL, MySQL, SQLite</p>
+                <div class="tags"><span>PostgreSQL</span><span>MySQL</span><span>SQL</span></div>
+            </div>
+            <div class="competence-item">
+                <span class="icon"><svg class="icon" aria-hidden="true"><use href="#icon-server"></use></svg></span>
+                <h4>Systèmes & Réseaux</h4>
+                <p>Linux, TCP/IP, DNS, DHCP, Wireshark</p>
+                <div class="tags"><span>Linux</span><span>Wireshark</span><span>Nmap</span></div>
+            </div>
+            <div class="competence-item">
+                <span class="icon"><svg class="icon" aria-hidden="true"><use href="#icon-chart"></use></svg></span>
+                <h4>Outils & Méthodes</h4>
+                <p>Git, Docker, UML, Agile</p>
+                <div class="tags"><span>Git</span><span>Docker</span><span>UML</span></div>
+            </div>
+            <div class="competence-item">
+                <span class="icon"><svg class="icon" aria-hidden="true"><use href="#icon-shield"></use></svg></span>
+                <h4>Cybersécurité</h4>
+                <p>Chiffrement, authentification, analyse réseau</p>
+                <div class="tags"><span>JWT</span><span>OTP</span><span>Nmap</span><span>Wireshark</span></div>
+            </div>
+        </div>
+
+        <!-- ===== PARCOURS ===== -->
+        <h2 class="section-title" id="parcours">Parcours & Formation</h2>
+        <p class="section-sub">Mon chemin vers le développement et la cybersécurité.</p>
+
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="year">2024 - 2026</div>
+                <div class="content">
+                    <h4>Licence 3 Informatique — Université de Dschang</h4>
+                    <p>Formation généraliste en informatique : algorithmique, programmation, réseaux, bases de données, génie logiciel.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="year">2026</div>
+                <div class="content">
+                    <h4>Projet principal : Plateforme de prestataires</h4>
+                    <p>React + Spring Boot + PostgreSQL. Architecture microservices, authentification JWT/OTP, Docker.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="year">2026</div>
+                <div class="content">
+                    <h4>Projets réseaux & cybersécurité</h4>
+                    <p>Laboratoire réseau avec Wireshark, Nmap, configuration DNS/DHCP/HTTP, sécurisation et analyse de trafic.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="year">2026</div>
+                <div class="content">
+                    <h4>JavaFX & Android</h4>
+                    <p>Application de gestion de stock (JavaFX/SQLite) et application mobile de collection (Android/Java).</p>
+                </div>
+            </div>
+        </div>
+         <div class="timeline-item">
+                <div class="year">2025</div>
+                <div class="content">
+                    <h4>Hacking Ethique</h4>
+                    <p>Maitrise des fondamentaux en hacking ethique</p>
+                </div>
+            </div>
+        <div class="timeline-item">
+                <div class="year">2025</div>
+                <div class="content">
+                    <h4>Premier projet: E-commerce Laravel</h4>
+                    <p>Développement d'une boutique en ligne complète avec panier, gestion de stock et dashboard admin.</p>
+                </div>
+       </div>
+
+        <!-- ===== CTA FINAL ===== -->
+        <div class="cta-banner" id="contact">
+            <h2>Vous avez un projet ou une opportunité ?</h2>
+            <p>Je suis disponible pour des stages, alternances ou missions freelance.</p>
+            <a href="#" class="btn-white">Me contacter</a>
+            <div class="contact-direct">
+                <svg class="icon" aria-hidden="true"><use href="#icon-mail"></use></svg> <a href="mailto:tresorfofie1@gmail.com">tresorfofie1@gmail.com</a> · 
+                <svg class="icon" aria-hidden="true"><use href="#icon-phone"></use></svg> <a href="tel:+237659577562">+237 659577562</a> · 
+                <svg class="icon" aria-hidden="true"><use href="#icon-globe"></use></svg> <a href="#">LinkedIn</a> · <a href="#">GitHub</a>
+            </div>
+        </div>
+
+        <!-- ===== FOOTER ===== -->
+        <footer>
+            <div class="socials">
+                <a href="#">GitHub</a>
+                <a href="#">LinkedIn</a>
+                <a href="#">Portfolio</a>
+            </div>
+            <p>© 2026 MASSA A FOFIE SITCHEU TRESOR — Étudiant en L3 Informatique · Full Stack · Cybersécurité</p>
+        </footer>
+
+    </div>
+
+</body>
+</html>
